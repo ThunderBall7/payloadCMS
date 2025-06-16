@@ -191,7 +191,20 @@ export interface Page {
       | null;
     media?: (string | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
+  layout: (
+    | CallToActionBlock
+    | ContentBlock
+    | MediaBlock
+    | ArchiveBlock
+    | FormBlock
+    | HeroBannerBlock
+    | HeroBanner1Block
+    | MarqueeBlock
+    | FeaturesBlock
+    | MarqueeLogosBlock
+    | StatsBlock
+    | WhatWeDoBlock
+  )[];
   meta?: {
     title?: string | null;
     /**
@@ -729,6 +742,234 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeroBannerBlock".
+ */
+export interface HeroBannerBlock {
+  headline: string;
+  subheadline?: string | null;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  ctaButtons?:
+    | {
+        label: string;
+        url: string;
+        style?: ('primary' | 'secondary' | 'outline' | 'ghost') | null;
+        icon?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  backgroundImage?: (string | null) | Media;
+  backgroundVideo?: (string | null) | Media;
+  overlay?: ('none' | 'light' | 'medium' | 'dark' | 'gradient') | null;
+  alignment?: ('center' | 'left' | 'right') | null;
+  theme?: ('default' | 'light' | 'dark' | 'gradient') | null;
+  enableParallax?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'heroBanner';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeroBanner1Block".
+ */
+export interface HeroBanner1Block {
+  title: string;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  media?: {
+    type?: ('image' | 'video') | null;
+    image?: (string | null) | Media;
+    video?: (string | null) | Media;
+  };
+  theme?: ('light' | 'dark' | 'gradient') | null;
+  enableAnimation?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'heroBanner1';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MarqueeBlock".
+ */
+export interface MarqueeBlock {
+  text: string;
+  speed?: ('slow' | 'medium' | 'fast') | null;
+  direction?: ('left' | 'right') | null;
+  /**
+   * Enter a hex color code (e.g., #ffffff)
+   */
+  backgroundColor?: string | null;
+  /**
+   * Enter a hex color code (e.g., #000000)
+   */
+  textColor?: string | null;
+  fontSize?: ('small' | 'medium' | 'large' | 'xlarge') | null;
+  padding?: ('small' | 'medium' | 'large') | null;
+  /**
+   * How many times the text should repeat across the marquee
+   */
+  repeat?: number | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'marquee';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeaturesBlock".
+ */
+export interface FeaturesBlock {
+  title: string;
+  description?: string | null;
+  features: {
+    title: string;
+    description: string;
+    /**
+     * Enter an icon name from the icon library (e.g., "star", "check", "shield")
+     */
+    icon?: string | null;
+    image?: (string | null) | Media;
+    id?: string | null;
+  }[];
+  layout?: ('grid' | 'list' | 'cards') | null;
+  columns?: ('2' | '3' | '4') | null;
+  theme?: ('light' | 'dark' | 'gradient') | null;
+  enableAnimation?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'features';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MarqueeLogosBlock".
+ */
+export interface MarqueeLogosBlock {
+  logos: {
+    logo: string | Media;
+    alt?: string | null;
+    link?: string | null;
+    id?: string | null;
+  }[];
+  speed?: ('slow' | 'medium' | 'fast') | null;
+  direction?: ('left' | 'right') | null;
+  /**
+   * Enter a hex color code (e.g., #ffffff)
+   */
+  backgroundColor?: string | null;
+  padding?: ('small' | 'medium' | 'large') | null;
+  logoSize?: ('small' | 'medium' | 'large') | null;
+  enableHover?: boolean | null;
+  enableGrayscale?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'marqueeLogos';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StatsBlock".
+ */
+export interface StatsBlock {
+  title: string;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  stats: {
+    value: string;
+    label: string;
+    icon?:
+      | ('users' | 'chart' | 'star' | 'check' | 'shield' | 'trophy' | 'heart' | 'lightning' | 'globe' | 'clock')
+      | null;
+    /**
+     * Add a prefix to the value (e.g., "$", "+")
+     */
+    prefix?: string | null;
+    /**
+     * Add a suffix to the value (e.g., "%", "k", "M")
+     */
+    suffix?: string | null;
+    id?: string | null;
+  }[];
+  theme?: ('light' | 'dark' | 'gradient') | null;
+  layout?: ('grid' | 'list') | null;
+  enableAnimation?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'stats';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WhatWeDoBlock".
+ */
+export interface WhatWeDoBlock {
+  title: string;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  services?:
+    | {
+        icon: 'users' | 'chart' | 'star' | 'check' | 'shield' | 'trophy' | 'heart' | 'lightning' | 'globe' | 'clock';
+        title: string;
+        description: string;
+        id?: string | null;
+      }[]
+    | null;
+  theme?: ('light' | 'dark' | 'gradient') | null;
+  enableAnimation?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'whatWeDo';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1018,6 +1259,13 @@ export interface PagesSelect<T extends boolean = true> {
         mediaBlock?: T | MediaBlockSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
+        heroBanner?: T | HeroBannerBlockSelect<T>;
+        heroBanner1?: T | HeroBanner1BlockSelect<T>;
+        marquee?: T | MarqueeBlockSelect<T>;
+        features?: T | FeaturesBlockSelect<T>;
+        marqueeLogos?: T | MarqueeLogosBlockSelect<T>;
+        stats?: T | StatsBlockSelect<T>;
+        whatWeDo?: T | WhatWeDoBlockSelect<T>;
       };
   meta?:
     | T
@@ -1114,6 +1362,156 @@ export interface FormBlockSelect<T extends boolean = true> {
   form?: T;
   enableIntro?: T;
   introContent?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeroBannerBlock_select".
+ */
+export interface HeroBannerBlockSelect<T extends boolean = true> {
+  headline?: T;
+  subheadline?: T;
+  content?: T;
+  ctaButtons?:
+    | T
+    | {
+        label?: T;
+        url?: T;
+        style?: T;
+        icon?: T;
+        id?: T;
+      };
+  backgroundImage?: T;
+  backgroundVideo?: T;
+  overlay?: T;
+  alignment?: T;
+  theme?: T;
+  enableParallax?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeroBanner1Block_select".
+ */
+export interface HeroBanner1BlockSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  media?:
+    | T
+    | {
+        type?: T;
+        image?: T;
+        video?: T;
+      };
+  theme?: T;
+  enableAnimation?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MarqueeBlock_select".
+ */
+export interface MarqueeBlockSelect<T extends boolean = true> {
+  text?: T;
+  speed?: T;
+  direction?: T;
+  backgroundColor?: T;
+  textColor?: T;
+  fontSize?: T;
+  padding?: T;
+  repeat?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeaturesBlock_select".
+ */
+export interface FeaturesBlockSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  features?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        icon?: T;
+        image?: T;
+        id?: T;
+      };
+  layout?: T;
+  columns?: T;
+  theme?: T;
+  enableAnimation?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MarqueeLogosBlock_select".
+ */
+export interface MarqueeLogosBlockSelect<T extends boolean = true> {
+  logos?:
+    | T
+    | {
+        logo?: T;
+        alt?: T;
+        link?: T;
+        id?: T;
+      };
+  speed?: T;
+  direction?: T;
+  backgroundColor?: T;
+  padding?: T;
+  logoSize?: T;
+  enableHover?: T;
+  enableGrayscale?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StatsBlock_select".
+ */
+export interface StatsBlockSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  stats?:
+    | T
+    | {
+        value?: T;
+        label?: T;
+        icon?: T;
+        prefix?: T;
+        suffix?: T;
+        id?: T;
+      };
+  theme?: T;
+  layout?: T;
+  enableAnimation?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WhatWeDoBlock_select".
+ */
+export interface WhatWeDoBlockSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  services?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  theme?: T;
+  enableAnimation?: T;
   id?: T;
   blockName?: T;
 }

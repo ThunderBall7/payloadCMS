@@ -7,11 +7,18 @@ import { CallToAction } from '../../blocks/CallToAction/config'
 import { Content } from '../../blocks/Content/config'
 import { FormBlock } from '../../blocks/Form/config'
 import { MediaBlock } from '../../blocks/MediaBlock/config'
+import { HeroBanner } from '../../blocks/HeroBanner/config'
+import { Marquee } from '../../blocks/Marquee/config'
+import { Features } from '../../blocks/Features/config'
+import { MarqueeLogos } from '../../blocks/MarqueeLogos/config'
 import { hero } from '@/heros/config'
 import { slugField } from '@/fields/slug'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 import { generatePreviewPath } from '../../utilities/generatePreviewPath'
 import { revalidateDelete, revalidatePage } from './hooks/revalidatePage'
+import { HeroBanner1 } from '@/blocks/HeroBanner1/config'
+import { Stats } from '@/blocks/Stats/config'
+import { WhatWeDo } from '../../blocks/WhatWeDo/config'
 
 import {
   MetaDescriptionField,
@@ -75,7 +82,20 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock],
+              blocks: [
+                CallToAction,
+                Content,
+                MediaBlock,
+                Archive,
+                FormBlock,
+                HeroBanner,
+                HeroBanner1,
+                Marquee,
+                Features,
+                MarqueeLogos,
+                Stats,
+                WhatWeDo,
+              ],
               required: true,
               admin: {
                 initCollapsed: true,
